@@ -9,7 +9,7 @@ RUN apk update \
     unzip \
   && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip \
   && unzip snell-server.zip \
-  && chomd +x snell-server \
+  && chmod +x snell-server \
   && mv snell-server /usr/local/bin/
 
 
