@@ -2,15 +2,14 @@ FROM alpine:edge as builder
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
-ENV SNELL_VERSION 2.0.0
+ENV SNELL_VERSION=4.1.1
 
 RUN apk update \
   && apk add --no-cache \
     unzip \
-    upx \
   && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip \
   && unzip snell-server.zip \
-  && upx --brute snell-server \
+  && chomd +x snell-server \
   && mv snell-server /usr/local/bin/
 
 
@@ -18,12 +17,12 @@ FROM alpine:3.9
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
-ENV GLIBC_VERSION 2.29-r0
+ENV GLIBC_VERSION=2.29-r0
 
-ENV SERVER_HOST 0.0.0.0
-ENV SERVER_PORT 8388
+ENV SERVER_HOST=0.0.0.0
+ENV SERVER_PORT=8388
 ENV PSK=
-ENV OBFS http
+ENV OBFS=http
 ENV ARGS=
 
 EXPOSE ${SERVER_PORT}/tcp
